@@ -621,7 +621,7 @@
           </div>
           <div class="cta-detail">
             <span>Hours</span>
-            <strong>Mon–Sat, 8am–6pm</strong>
+            <strong>Mon–Fri, 9am–5pm</strong>
           </div>
         </div>
       </div>
