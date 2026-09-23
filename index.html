@@ -105,19 +105,36 @@
     position:sticky;
     top:0;
     z-index:50;
-    background:rgba(255,255,255,0.94);
+    background:rgba(255,255,255,0.96);
     backdrop-filter:saturate(180%) blur(8px);
-    border-bottom:1px solid var(--steel-line);
+    border-bottom:3px solid var(--orange);
+    box-shadow:0 1px 0 rgba(33,35,42,0.05);
   }
   .nav{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:14px 0;
+    padding:16px 0;
     gap:16px;
   }
-  .nav-logo img{ height:38px; width:auto; }
-  .nav-logo{ display:flex; align-items:center; }
+  .nav-logo{ display:flex; align-items:center; gap:14px; text-decoration:none; }
+  .nav-logo-icon{ height:58px; width:auto; flex-shrink:0; }
+  .nav-logo-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .nav-logo-name{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.75rem;
+    letter-spacing:0.5px;
+    color:var(--ink);
+  }
+  .nav-logo-sub{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.72rem;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
   .nav-links{
     display:none;
     align-items:center;
@@ -172,14 +189,30 @@
 
   /* ---------- hero ---------- */
   .hero{
+    position:relative;
     padding:64px 0 56px;
     background:var(--steel);
     overflow:hidden;
   }
   .hero .wrap{
+    position:relative;
+    z-index:1;
     display:grid;
     gap:40px;
     align-items:center;
+  }
+  .decor-mark{
+    position:absolute;
+    pointer-events:none;
+    color:var(--ink);
+  }
+  .decor-mark svg{ width:100%; height:100%; display:block; }
+  .hero .decor-mark{
+    width:340px;
+    height:340px;
+    top:-90px;
+    right:-100px;
+    opacity:0.05;
   }
   .hero-locality{
     display:inline-flex;
@@ -212,11 +245,20 @@
     margin-top:30px;
   }
   .hero-art{
+    position:relative;
     display:flex;
     justify-content:center;
     animation:settle-in 0.7s ease-out both;
   }
-  .hero-art img{ width:min(280px, 62vw); filter:drop-shadow(0 18px 30px rgba(33,35,42,0.22)); }
+  .hero-art::before{
+    content:'';
+    position:absolute;
+    width:75%;
+    aspect-ratio:1;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(232,89,11,0.20) 0%, rgba(232,89,11,0) 72%);
+  }
+  .hero-art img{ position:relative; width:min(280px, 62vw); filter:drop-shadow(0 18px 30px rgba(33,35,42,0.22)); }
 
   @keyframes settle-in{
     from{ opacity:0; transform:translateY(14px) scale(0.97); }
@@ -228,6 +270,7 @@
     .hero .wrap{ grid-template-columns:1.15fr 0.85fr; }
     .hero h1{ font-size:3.4rem; max-width:12ch; }
     .hero-art img{ width:min(360px, 100%); }
+    .hero .decor-mark{ width:480px; height:480px; top:-140px; right:-120px; }
   }
 
   /* ---------- section heading pattern ---------- */
@@ -269,7 +312,11 @@
   }
 
   /* ---------- services ---------- */
-  .services{ background:var(--steel); }
+  .services{
+    background-color:var(--steel);
+    background-image:radial-gradient(circle, rgba(33,35,42,0.08) 1.5px, transparent 1.5px);
+    background-size:24px 24px;
+  }
   .service-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -346,7 +393,12 @@
   }
 
   /* ---------- areas ---------- */
-  .areas{ background:var(--steel); text-align:center; }
+  .areas{
+    background-color:var(--steel);
+    background-image:radial-gradient(circle, rgba(33,35,42,0.08) 1.5px, transparent 1.5px);
+    background-size:24px 24px;
+    text-align:center;
+  }
   .area-chips{
     display:flex;
     flex-wrap:wrap;
@@ -369,10 +421,27 @@
 
   /* ---------- CTA ---------- */
   .cta{
-    background:var(--deep);
+    position:relative;
+    overflow:hidden;
+    background-color:var(--deep);
+    background-image:radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1.5px);
+    background-size:24px 24px;
     color:var(--white);
   }
+  .cta .decor-mark{
+    width:320px;
+    height:320px;
+    bottom:-100px;
+    left:-90px;
+    opacity:0.07;
+    color:var(--white);
+  }
+  @media (min-width:800px){
+    .cta .decor-mark{ width:440px; height:440px; bottom:-140px; left:-100px; }
+  }
   .cta-inner{
+    position:relative;
+    z-index:1;
     display:flex;
     flex-direction:column;
     gap:28px;
@@ -409,7 +478,24 @@
     padding-bottom:32px;
     border-bottom:1px solid var(--deep-line);
   }
-  .footer-logo img{ height:34px; }
+  .footer-logo{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .footer-logo-icon{ height:44px; width:auto; flex-shrink:0; }
+  .footer-logo-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .footer-logo-name{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:0.5px;
+    color:var(--white);
+  }
+  .footer-logo-sub{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.62rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#9EA1AA;
+  }
   .footer-tagline{ margin-top:14px; max-width:38ch; font-size:0.94rem; color:#9EA1AA; }
   .footer-links{ display:flex; flex-wrap:wrap; gap:22px; font-size:0.92rem; }
   .footer-links a{ text-decoration:none; color:#C7C9CF; }
@@ -435,7 +521,11 @@
   <div class="wrap">
     <nav class="nav">
       <a href="#top" class="nav-logo" aria-label="Fixify Appliance Repair home">
-        <img src="assets/fixify-lockup-light.png" alt="Fixify Appliance Repair">
+        <img src="assets/fixify-icon.png" alt="" class="nav-logo-icon">
+        <span class="nav-logo-text">
+          <span class="nav-logo-name">FIXIFY</span>
+          <span class="nav-logo-sub">Appliance Repair</span>
+        </span>
       </a>
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
@@ -464,6 +554,9 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="decor-mark" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><path fill="currentColor" fill-rule="evenodd" d="M 96.0,50.0 L 95.43,57.2 L 82.34,60.51 L 80.29,65.44 L 87.21,77.04 L 82.53,82.53 L 69.98,77.51 L 65.44,80.29 L 64.21,93.75 L 57.2,95.43 L 50.0,84.0 L 44.68,83.58 L 35.79,93.75 L 29.12,90.99 L 30.02,77.51 L 25.96,74.04 L 12.79,77.04 L 9.01,70.88 L 17.66,60.51 L 16.42,55.32 L 4.0,50.0 L 4.57,42.8 L 17.66,39.49 L 19.71,34.56 L 12.79,22.96 L 17.47,17.47 L 30.02,22.49 L 34.56,19.71 L 35.79,6.25 L 42.8,4.57 L 50.0,16.0 L 55.32,16.42 L 64.21,6.25 L 70.88,9.01 L 69.98,22.49 L 74.04,25.96 L 87.21,22.96 L 90.99,29.12 L 82.34,39.49 L 83.58,44.68 Z M 34,50 A16,16 0 1,1 66,50 A16,16 0 1,1 34,50 Z"/></svg>
+    </div>
     <div class="wrap">
       <div>
         <span class="hero-locality">
@@ -610,6 +703,9 @@
 
   <!-- CTA -->
   <section class="cta" id="contact">
+    <div class="decor-mark" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><path fill="currentColor" fill-rule="evenodd" d="M 96.0,50.0 L 95.43,57.2 L 82.34,60.51 L 80.29,65.44 L 87.21,77.04 L 82.53,82.53 L 69.98,77.51 L 65.44,80.29 L 64.21,93.75 L 57.2,95.43 L 50.0,84.0 L 44.68,83.58 L 35.79,93.75 L 29.12,90.99 L 30.02,77.51 L 25.96,74.04 L 12.79,77.04 L 9.01,70.88 L 17.66,60.51 L 16.42,55.32 L 4.0,50.0 L 4.57,42.8 L 17.66,39.49 L 19.71,34.56 L 12.79,22.96 L 17.47,17.47 L 30.02,22.49 L 34.56,19.71 L 35.79,6.25 L 42.8,4.57 L 50.0,16.0 L 55.32,16.42 L 64.21,6.25 L 70.88,9.01 L 69.98,22.49 L 74.04,25.96 L 87.21,22.96 L 90.99,29.12 L 82.34,39.49 L 83.58,44.68 Z M 34,50 A16,16 0 1,1 66,50 A16,16 0 1,1 34,50 Z"/></svg>
+    </div>
     <div class="wrap cta-inner">
       <div>
         <h2>Ready when your appliance isn't.</h2>
@@ -639,7 +735,11 @@
     <div class="footer-top">
       <div>
         <a href="#top" class="footer-logo" aria-label="Fixify Appliance Repair home">
-          <img src="assets/fixify-lockup-dark.png" alt="Fixify Appliance Repair">
+          <img src="assets/fixify-icon-light.png" alt="" class="footer-logo-icon">
+          <span class="footer-logo-text">
+            <span class="footer-logo-name">FIXIFY</span>
+            <span class="footer-logo-sub">Appliance Repair</span>
+          </span>
         </a>
         <p class="footer-tagline">Appliance repair for Newburgh, Chandler, and Evansville, Indiana — professional communication, on-time arrival, spotless cleanup.</p>
       </div>
